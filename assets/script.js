@@ -58,7 +58,7 @@
     function starter() {setInterval(timer1, 1000)}
 
     function timer1() {
-    if (totalSeconds>=0) {
+    if (totalSeconds>0) {
     totalSeconds=totalSeconds-1
     minutes=Math.floor(totalSeconds/60)
     seconds=Math.round((totalSeconds/60-Math.floor(totalSeconds/60))*60)
@@ -92,6 +92,10 @@
    
 
 function displayquestion(){
+  if(j>2) {
+
+    end()
+  }
 displayQuestion1=document.createElement("displayQuestion")
 displayQuestion1.id="find"
 displayQuestion1.classList.add("center")
@@ -140,6 +144,11 @@ for (i=0; i<3; i++) {
 buttons[i].addEventListener ('click', newfunction,false)
 }
 
+
+}
+
+function end (){
+alert("end")
 
 }
 
