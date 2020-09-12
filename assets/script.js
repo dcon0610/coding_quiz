@@ -2,9 +2,10 @@
     var buttonStart = document.querySelector('#start')
     var parent = document.querySelector('#parent')
     var timer = document.querySelector("#timer")
-
+    let myWinner = []
     
   var DisplayQuestion1
+  var score = 0
   var buttons=[]
   var button1
   var button2
@@ -41,7 +42,27 @@
         3: "ESLint"
       },
       correctAnswer: "3"
-    }
+    },
+
+    {
+      question: "Who invented JavaScript?",
+      answers: {
+        1: "Douglas Crockford",
+        2: "Sheryl Sandberg",
+        3: "Brendan Eich"
+      },
+      correctAnswer: "3"
+    },
+
+    {
+      question: "Who invented Python?",
+      answers: {
+        1: "Douglas Crockford",
+        2: "Sheryl Sandberg",
+        3: "Brendan Eich"
+      },
+      correctAnswer: "3"
+    },
   ];
   
     buttonStart.addEventListener('click',block,false);
@@ -58,26 +79,30 @@
     function starter() {setInterval(timer1, 1000)}
 
     function timer1() {
-    if (totalSeconds>0) {
+    if (totalSeconds>0 && score===0 ) {
     totalSeconds=totalSeconds-1
     minutes=Math.floor(totalSeconds/60)
+    console.log(score)
     seconds=Math.round((totalSeconds/60-Math.floor(totalSeconds/60))*60)
     if (seconds<10) {
       seconds="0"+seconds
     }
+    console.log(totalSeconds)
     timer.innerHTML="Timer: "+ minutes+ ":" +seconds
       
     }
     }
   function newfunction() {
+    console.log("j"+j)
     if(myQuestions[j].correctAnswer===this.id) {
       right="previous answer was correct"
     }
 
     else {
       right="previous answer was incorrect"
+      totalSeconds=totalSeconds-10
     }
-    
+    console.log(totalSeconds)
       j++
         console.log(button1)
 
@@ -92,10 +117,13 @@
    
 
 function displayquestion(){
-  if(j>2) {
+  console.log("questions length" + myQuestions.length )
 
+  if(j>myQuestions.length-1) {
+    
     end()
   }
+  else {
 displayQuestion1=document.createElement("displayQuestion")
 displayQuestion1.id="find"
 displayQuestion1.classList.add("center")
@@ -140,23 +168,51 @@ button3 = document.getElementById('3')
 buttons=[button1,button2,button3]
 console.log(buttons)
 
-for (i=0; i<3; i++) {
-buttons[i].addEventListener ('click', newfunction,false)
-}
 
+  }
+
+  for (i=0; i<3; i++) {
+    buttons[i].addEventListener ('click', newfunction,false)
+    }
 
 }
 
 function end (){
-alert("end")
+  score=totalSeconds
+  minutes=Math.floor(totalSeconds/60)
+  seconds=Math.round((totalSeconds/60-Math.floor(totalSeconds/60))*60)
+  if (seconds<10) {
+    seconds="0"+seconds
+  }
+  timer.innerHTML="Timer: "+ minutes+ ":" +seconds
+
+var endpage =document.createElement('div')
+var emptyLine = document.createElement('br')
+
+endpage.appendChild(document.createTextNode("Your quiz is finished!"))
+endpage.appendChild(emptyLine)
+endpage.appendChild(document.createTextNode("your score is: " +score))
+
+displayQuestion1.appendChild(endpage)
+parent.appendChild(displayQuestion1)
+
+displayQuestion1.removeChild(section)
+console.log(displayQuestion1)
+console.log(right)
+
+
+
+
+//localStorage.setItem(winnerlist, JSON.stringigy my winner)
+
+//let myt LIst to display = JSON .parese local localStorage
+
+
+//for loop
+
+
 
 }
-
-
-
-
-
-
 
   
 
